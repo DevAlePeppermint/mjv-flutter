@@ -1,5 +1,6 @@
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:school/pages/home/home_page.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -39,69 +40,9 @@ class MyApp extends StatelessWidget {
       )
     );
 
-    return MaterialApp(
+    return const MaterialApp(
       title: 'School',
-      home: Scaffold(
-        body: Container(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-             Card(
-              child: Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: Row(children: [
-                      Container(
-                        padding: const EdgeInsets.only(right: 8),
-                        child: const CircleAvatar(child: Text('A')),
-                      ),
-                      const Text('Alexandra Gropp', style: TextStyle(fontWeight: FontWeight.bold)),
-                    ],)
-                  ),
-                  const Spacer(),
-                  const Icon(Icons.more_vert, color: Colors.black,)
-                ],
-              ),
-            ),
-
-            const Text(
-              'Minhas Estatísticas',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)
-              ),
-            const SizedBox(height: 16),
-            const Row(
-              children: [
-                Icon(Icons.list, color: Colors.black,),
-                SizedBox(width: 4),
-                Text('Total de notas: '),
-                Text('0')
-              ]
-            ),
-            const Row(
-              children: [
-              Icon(Icons.done_all, color: Colors.black),
-              SizedBox(width: 4),
-              Text('Concluidas: '),
-              Text('0')
-              ]
-            ),
-            const SizedBox(height: 16,),
-            const Divider(),
-                const Text('Configurações', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
-                const SizedBox(height: 8),
-                Row(children: [
-                  const Text('Tema escuro'),
-                  const Spacer(),
-                  Switch(value: true, onChanged: (val) {}),
-                ],)
-              ],
-          
-          ),
-        )
-      )
+      home: HomePage()
     );
     
     

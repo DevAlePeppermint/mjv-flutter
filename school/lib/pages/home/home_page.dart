@@ -40,15 +40,12 @@ class _HomePage extends State<HomePage>{
     ]; //variavel privada
 
     final List<Widget> _conteudos = [
-      AfazeresTab(
-        valorInicial: 50,
-        callback: handleTab,
-      ),
+      AfazeresTab(),
       const PerfilTab(),
     ];
 
     return Scaffold(
-      appBar: const AppBarComponent(titulo: 'lalala'),
+      appBar: const AppBarComponent(titulo: 'School'),
       body: _conteudos.elementAt(indexAtual),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (index) {
@@ -68,37 +65,3 @@ class _HomePage extends State<HomePage>{
     );
   }
 }
-
-// class HomePage extends StatelessWidget {
-//   const HomePage({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-
-//     final List<BottomNavigationBarItem> _abas = [
-//           const BottomNavigationBarItem(
-//             icon: Icon(Icons.home),
-//             label: 'Home'
-//           ),
-//           const BottomNavigationBarItem(
-//             icon: Icon(Icons.account_circle),
-//             label: 'Perfil'
-//           ),
-//     ]; //variavel privada
-
-//     final List<Widget> _conteudos = [
-//       const AfazeresTab(valorInicial: 50),
-//       const PerfilTab(),
-//     ];
-
-//     return Scaffold(
-//       appBar: const AppBarComponent(titulo: 'lalala'),
-//       body: _conteudos.elementAt(0),
-//       bottomNavigationBar: BottomNavigationBar(
-//         onTap(index) {}
-//         currentIndex: 1,
-//         items: _abas,
-//       ),
-//     );
-//   }
-// }

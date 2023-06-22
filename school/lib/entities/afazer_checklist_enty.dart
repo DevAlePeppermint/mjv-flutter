@@ -4,6 +4,24 @@ class AfazerChecklistEntity {
 
   AfazerChecklistEntity({
     required this.titulo,
-    required this.isChecked
+    this.isChecked = false
   });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'titulo': titulo,
+      'isChecked': isChecked,
+    };
+  }
+
+  factory AfazerChecklistEntity.fromJson(Map<String, dynamic> json) {
+    return AfazerChecklistEntity(
+      titulo: json['titulo'],
+      isChecked: json['isChecked']
+    );
+  }
+
+  static List<AfazerChecklistEntity> fromJsonList(List<dynamic> json) {
+    return json?.map((itemList) => AfazerChecklistEntity.fromJson(itemList)).toList() ?? [];
+  }
 }

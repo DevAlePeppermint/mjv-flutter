@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:school/components/body_component.dart';
 import 'package:school/pages/home/abas/afazeres_tab.dart';
 import 'package:school/pages/home/abas/perfil_tab.dart';
 import '../../components/app_bar_component.dart';
+import '../../providers/afazer_provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,11 +14,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePage extends State<HomePage>{
+  late AfazerProvider store;
   late int indexAtual;
 
   @override
   void initState() {
     indexAtual = 0;
+    store = Provider.of<AfazerProvider>(context, listen: false);
     super.initState();
   }
 
@@ -44,10 +49,8 @@ class _HomePage extends State<HomePage>{
       const PerfilTab(),
     ];
 
-    return Scaffold(
-      appBar: const AppBarComponent(titulo: 'School'),
-      body: _conteudos.elementAt(indexAtual),
-      bottomNavigationBar: BottomNavigationBar(
+    return BodyComponent(
+      bar: BottomNavigationBar(
         onTap: (index) {
           setState(() {
             indexAtual = index;
@@ -56,12 +59,13 @@ class _HomePage extends State<HomePage>{
         currentIndex: indexAtual,
         items: _abas,
       ),
-      floatingActionButton: FloatingActionButton(
+      actionButton: FloatingActionButton(
         onPressed: () {
-
+          store.abrirModalCadastro(context);
         },
         child: const Icon(Icons.add)
       ),
+      child: _conteudos.elementAt(indexAtual)
     );
   }
 }

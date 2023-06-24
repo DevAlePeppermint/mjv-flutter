@@ -1,47 +1,50 @@
 import 'package:flutter/material.dart';
-
+import '../../../components/icon_button_component.dart';
 import '../../../components/spacer_component.dart';
+import '../../../entities/afazer_entity.dart';
 
 class ItemWidget extends StatelessWidget {
-  final item;
-  final index;
-  final Function excluirItem;
+  final AfazerEntity item;
+  final Function() onPressed;
 
   const ItemWidget({
-    super.key, 
+    super.key,
     required this.item,
-    required this.index,
-    required this.excluirItem
+    required this.onPressed,
   });
 
   Widget status() {
-    final icon = item.isConcluido == true ? 
-      const Icon(Icons.done_all, color: Colors.green,) : const Icon(Icons.done, color: Colors.grey,);
-    return icon;
+    final icon = item.isConcluido == true ? Icons.done_all : Icons.done;
+    final color = item.isConcluido == true ? Colors.green : Colors.grey[400];
+    return Icon(icon, color: color);
   }
-
 
   @override
   Widget build(BuildContext context) {
-    return Dismissible(
-      key: Key(item.uuid),
+    return SizedBox(
+      width: double.infinity,
       child: Card(
+        elevation: 2.0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+          padding: const EdgeInsets.all(16.0),
           child: Row(children: [
             status(),
-            const SpacerComponent(size: 8, isHorizontal: true,),
-            Text(item.titulo, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17)),
-            const Spacer(),
-            const Icon(Icons.arrow_forward_ios)
+            const SpacerComponent(isHorizontal: true),
+            Text(
+              item.titulo,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            const SpacerComponent(isFull: true),
+            IconButtonComponent(
+              iconName: Icons.arrow_forward_ios,
+              onPressed: onPressed,
+            )
           ]),
         ),
       ),
-      onDismissed: (direction) {
-        if(direction == DismissDirection.startToEnd) {
-          excluirItem(index);
-        }
-      },
     );
   }
 }

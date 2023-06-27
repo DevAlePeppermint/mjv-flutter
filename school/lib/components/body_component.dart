@@ -29,7 +29,7 @@ class BodyComponent extends StatelessWidget {
         padding: padding ?? const EdgeInsets.all(18),
         // medidas que o box pode ter
         constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width),
-        child: child
+        child: child,
       ),
       bottomNavigationBar: bar,
       floatingActionButton: actionButton,

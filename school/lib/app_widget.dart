@@ -1,49 +1,26 @@
-// import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:school/app_routes/app_routes.dart';
+import 'package:school/providers/config_provider.dart';
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    MaterialApp(
-      title: 'School',
-      home: Scaffold(
-        body: Container(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const CircleAvatar(child: Text('A'),),
-              const Text('Texto 1'),
-              const Text('Texto 2'),
-              const Text('Texto 3'),
-              const Divider(),
-              const Row(children: [
-                Icon(Icons.add, color: Colors.green,),
-                SizedBox(width: 100, height: 100),
-                Spacer(),
-                Icon(Icons.access_alarm, color: Colors.red,),
-              ],
-              ),
-              Switch(value: true, onChanged: (val) {}),
-              const Card(
-                child: Padding(
-                  padding: EdgeInsets.all(16),
-                  child: Text('Alexandra linda')),
-              )
-            ],
-          ),
-        )
-      )
-    );
-
-    return MaterialApp(
-      title: 'School',
-      routes: AppRoutes.routes(),
-    );
-  }
+  State<MyApp> createState() => _MyAppState();
 }
+  
+  class _MyAppState extends State<MyApp>{
+    late ConfigProvider storeConfig;
+
+    @override
+    Widget build(BuildContext context) {
+      storeConfig = Provider.of<ConfigProvider>(context);
+      return MaterialApp(
+        title: 'School',
+        routes: AppRoutes.routes(),
+        theme: storeConfig.tema == ThemeMode.dark ? ThemeData.dark() : ThemeData.light(),
+      );
+    }
+  } 
 

@@ -20,9 +20,9 @@ class _AfazeresTab extends State<AfazeresTab> {
     store.excluirItem(indexDeleted);
   }
 
-  // void onDetalhes() {
   void onDetalhes(AfazerEntity item, int idx) {
-    Navigator.pushNamed(context, AppRoutes.detalhe);
+    store.selecionado = item;
+    Navigator.pushNamed(context, AppRoutes.detalhe, arguments: idx);
   }
 
   @override
